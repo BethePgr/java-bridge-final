@@ -20,4 +20,11 @@ public class InputValidation {
         String reg = "[0-9]+";
         return input.matches(reg);
     }
+
+    public static void onlyUorD(String input){
+        if(input.equals("U") || input.equals("D")){
+            return;
+        }
+        throw new IllegalArgumentException("[ERROR] U나 D만 입력 가능합니다.");
+    }
 }
