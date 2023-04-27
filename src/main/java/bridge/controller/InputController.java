@@ -21,4 +21,15 @@ public class InputController {
             return readBridgeSize();
         }
     }
+
+    public String readMoving(){
+        try{
+            String input = inputView.readMoving();
+            InputValidation.onlyUorD(input);
+            return input;
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return readMoving();
+        }
+    }
 }
