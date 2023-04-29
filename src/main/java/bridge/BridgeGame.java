@@ -11,6 +11,7 @@ public class BridgeGame {
     private List<String> answerBridge;
     private List<List<String>> makingBridge;
     private int bridgeIndex;
+    private boolean correct = true;
 
     public BridgeGame(List<String> answerBridge){
         this.answerBridge = answerBridge;
@@ -41,6 +42,7 @@ public class BridgeGame {
         }if(moveInput.equals("D")){
             makingBridge.get(0).add("   ");
             makingBridge.get(1).add(" X ");
+            correct = false;
         }
     }
 
@@ -48,6 +50,7 @@ public class BridgeGame {
         if(moveInput.equals("U")){
             makingBridge.get(0).add(" X ");
             makingBridge.get(1).add("   ");
+            correct = false;
         }
         if(moveInput.equals("D")){
             makingBridge.get(0).add("   ");
@@ -67,4 +70,7 @@ public class BridgeGame {
         return makingBridge;
     }
 
+    public boolean isCorrect(){
+        return correct;
+    }
 }
