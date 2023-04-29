@@ -27,4 +27,11 @@ public class InputValidation {
         }
         throw new IllegalArgumentException("[ERROR] U나 D만 입력 가능합니다.");
     }
+
+    public static void onlyRorQ(String input){
+        if(input.equals("R") || input.equals("Q")){
+            return;
+        }
+        throw new IllegalArgumentException("[ERROR] R이나 Q만 입력 가능합니다.");
+    }
 }

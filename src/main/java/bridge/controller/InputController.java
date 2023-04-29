@@ -32,4 +32,15 @@ public class InputController {
             return readMoving();
         }
     }
+
+    public String readRestart(){
+        try{
+            String input = inputView.readGameCommand();
+            InputValidation.onlyRorQ(input);
+            return input;
+        }catch(IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return readRestart();
+        }
+    }
 }
