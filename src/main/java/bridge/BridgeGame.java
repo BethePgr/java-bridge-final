@@ -73,4 +73,8 @@ public class BridgeGame {
     public boolean isCorrect(){
         return correct;
     }
+
+    public int sizeOfBMakingBridge(){
+        return makingBridge.size();
+    }
 }

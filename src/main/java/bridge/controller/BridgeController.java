@@ -14,11 +14,12 @@ public class BridgeController {
         String bridgeSize = inputController.readBridgeSize();
         List<String> answerBridge = bridgeMaker.makeBridge(Integer.parseInt(bridgeSize));
         BridgeGame bridgeGame = new BridgeGame(answerBridge);
-        while(bridgeGame.isCorrect()){
+        while(bridgeGame.isCorrect() && bridgeGame.sizeOfBMakingBridge() < Integer.parseInt(bridgeSize)){
             String input = inputController.readMoving();
             bridgeGame.move(input);
             OutputView.printMap(bridgeGame.getMakingBridge());
         }
+
     }
 
 }
