@@ -2,6 +2,7 @@ package bridge;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import bridge.domain.BridgeMaker;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
