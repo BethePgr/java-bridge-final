@@ -25,10 +25,7 @@ public class BridgeGame {
         makingBridge.add(new ArrayList<>());
     }
 
-    public void clearMakingBridge(){
-        makingBridge.get(0).clear();
-        makingBridge.get(1).clear();
-    }
+
     public void move(String moveInput) {
         if(answerBridge.get(bridgeIndex).equals("U")){
             moveWhenAnswerIsU(moveInput);
