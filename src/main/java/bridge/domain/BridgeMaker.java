@@ -1,5 +1,6 @@
-package bridge;
+package bridge.domain;
 
+import bridge.BridgeNumberGenerator;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,10 +25,7 @@ public class BridgeMaker {
 
     public String makeUorD(){
         int number = bridgeNumberGenerator.generate();
-        if(number == 1){
-            return "U";
-        }
-        return "D";
+        return MoveCommand.findString(number);
     }
 
 }
