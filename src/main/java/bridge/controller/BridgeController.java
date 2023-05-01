@@ -15,6 +15,7 @@ public class BridgeController {
     private int count =1;
 
     public void run(){
+        System.out.println("다리 건너기 게임을 시작합니다.");
         String bridgeSize = inputController.readBridgeSize();
         List<String> answerBridge = bridgeMaker.makeBridge(Integer.parseInt(bridgeSize));
         BridgeGame bridgeGame = new BridgeGame(answerBridge);
