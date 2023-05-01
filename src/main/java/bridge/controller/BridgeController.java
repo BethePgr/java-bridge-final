@@ -8,8 +8,8 @@ import java.util.List;
 
 public class BridgeController {
 
-    InputController inputController = new InputController();
-    BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+    private final InputController inputController = new InputController();
+    private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     private boolean flag = true;
     private boolean gameResult = false;
     private int count =1;
@@ -25,12 +25,7 @@ public class BridgeController {
         OutputView.printSuccessOrFail(gameResult,count);
     }
 
-    public void successGame(BridgeGame bridgeGame){
-        OutputView.printResult(bridgeGame.getMakingBridge());
-        flag=false;
-        gameResult = true;
-    }
-    public void runOneGame(List<String> answerBridge,BridgeGame bridgeGame,String bridgeSize){
+    private void runOneGame(List<String> answerBridge,BridgeGame bridgeGame,String bridgeSize){
         while(bridgeGame.isCorrect() && bridgeGame.sizeOfBMakingBridge() < Integer.parseInt(bridgeSize)){
             inputUorDUntilWrong(bridgeGame);
         }
@@ -42,13 +37,19 @@ public class BridgeController {
         }
     }
 
-    public void inputUorDUntilWrong(BridgeGame bridgeGame){
+    private void inputUorDUntilWrong(BridgeGame bridgeGame){
         String input = inputController.readMoving();
         bridgeGame.move(input);
         OutputView.printMap(bridgeGame.getMakingBridge());
     }
 
-    public void failGame(BridgeGame bridgeGame,List<String> answerBridge,String bridgeSize){
+    private void successGame(BridgeGame bridgeGame){
+        OutputView.printResult(bridgeGame.getMakingBridge());
+        flag=false;
+        gameResult = true;
+    }
+
+    private void failGame(BridgeGame bridgeGame,List<String> answerBridge,String bridgeSize){
         String input = inputController.readRestart();
         if(!bridgeGame.retry(input)){
             OutputView.printResult(bridgeGame.getMakingBridge());
