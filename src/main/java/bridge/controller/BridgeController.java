@@ -12,52 +12,53 @@ public class BridgeController {
     private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
     private boolean flag = true;
     private boolean gameResult = false;
-    private int count =1;
+    private int count = 1;
 
-    public void run(){
+    public void run() {
         System.out.println("다리 건너기 게임을 시작합니다.");
         String bridgeSize = inputController.readBridgeSize();
         List<String> answerBridge = bridgeMaker.makeBridge(Integer.parseInt(bridgeSize));
         BridgeGame bridgeGame = new BridgeGame(answerBridge);
-        while(flag) {
-            runOneGame(answerBridge,bridgeGame, bridgeSize);
+        while (flag) {
+            runOneGame(answerBridge, bridgeGame, bridgeSize);
         }
-        OutputView.printSuccessOrFail(gameResult,count);
+        OutputView.printSuccessOrFail(gameResult, count);
     }
 
-    private void runOneGame(List<String> answerBridge,BridgeGame bridgeGame,String bridgeSize){
-        while(bridgeGame.isCorrect() && bridgeGame.sizeOfBMakingBridge() < Integer.parseInt(bridgeSize)){
+    private void runOneGame(List<String> answerBridge, BridgeGame bridgeGame, String bridgeSize) {
+        while (bridgeGame.isCorrect() && bridgeGame.sizeOfBMakingBridge() < Integer.parseInt(
+            bridgeSize)) {
             inputUorDUntilWrong(bridgeGame);
         }
-        if(bridgeGame.isCorrect()){
+        if (bridgeGame.isCorrect()) {
             successGame(bridgeGame);
         }
-        if(!bridgeGame.isCorrect()){
-            failGame(bridgeGame,answerBridge,bridgeSize);
+        if (!bridgeGame.isCorrect()) {
+            failGame(bridgeGame, answerBridge, bridgeSize);
         }
     }
 
-    private void inputUorDUntilWrong(BridgeGame bridgeGame){
+    private void inputUorDUntilWrong(BridgeGame bridgeGame) {
         String input = inputController.readMoving();
         bridgeGame.move(input);
         OutputView.printMap(bridgeGame.getMakingBridge());
     }
 
-    private void successGame(BridgeGame bridgeGame){
+    private void successGame(BridgeGame bridgeGame) {
         OutputView.printResult(bridgeGame.getMakingBridge());
-        flag=false;
+        flag = false;
         gameResult = true;
     }
 
-    private void failGame(BridgeGame bridgeGame,List<String> answerBridge,String bridgeSize){
+    private void failGame(BridgeGame bridgeGame, List<String> answerBridge, String bridgeSize) {
         String input = inputController.readRestart();
-        if(!bridgeGame.retry(input)){
+        if (!bridgeGame.retry(input)) {
             OutputView.printResult(bridgeGame.getMakingBridge());
             flag = false;
         }
-        if(bridgeGame.retry(input)){
+        if (bridgeGame.retry(input)) {
             count++;
-            runOneGame(answerBridge,new BridgeGame(answerBridge),bridgeSize);
+            runOneGame(answerBridge, new BridgeGame(answerBridge), bridgeSize);
         }
     }
 }
